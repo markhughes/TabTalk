@@ -19,51 +19,51 @@
 	TabTalk.read = null;
 	
 	TabTalk.load = function() {
-		this.read = new Array();
+		TabTalk.read = new Array();
 		
 		var tabTalkData = JSON.parse(localStorage.getItem("TabTalkData"));
-		this.ourLength = tabTalkData.length
+		TabTalk.ourLength = tabTalkData.length
 				
 		// Mark anything existing as read
 		for(row in tabTalkData) {
 			if (!tabTalkData.hasOwnProperty(row)) { continue; }
-			if(tabTalkData[row].from == this.id & this.options.ignoreMessagesFromSelf) { continue; }
-			this.read.push(tabTalkData[row].timestamp + "/" + tabTalkData[row].from);
+			if(tabTalkData[row].from == TabTalk.id & TabTalk.options.ignoreMessagesFromSelf) { continue; }
+			TabTalk.read.push(tabTalkData[row].timestamp + "/" + tabTalkData[row].from);
 		}
 
 		TabTalk.timer = setInterval(function() {
-			if(this.callback != null) {
+			if(TabTalk.callback != null) {
 				var tabTalkData = JSON.parse(localStorage.getItem("TabTalkData"));
 				
 				// Check for changes
-				if(this.ourLength != tabTalkData.length) {
+				if(TabTalk.ourLength != tabTalkData.length) {
 					for (row in tabTalkData) {
 						// Ensure it's what we're after
 						if (!tabTalkData.hasOwnProperty(row)) {
 							continue;
 						}
 						// Ensure its not a message we announced (if configured that way)
-						if(tabTalkData[row].from == this.id & this.options.ignoreMessagesFromSelf) {
+						if(tabTalkData[row].from == TabTalk.id & TabTalk.options.ignoreMessagesFromSelf) {
 							continue;
 						}
-						if(this.read.indexOf(tabTalkData[row].timestamp + "/" + tabTalkData[row].from) > -1) {
+						if(TabTalk.read.indexOf(tabTalkData[row].timestamp + "/" + tabTalkData[row].from) > -1) {
 							// TODO: Cleanup anything older than 10 seconds 
 							continue;
 						}
 						// Store it as read
-						this.read.push(tabTalkData[row].timestamp + "/" + tabTalkData[row].from);
-						this.callback(tabTalkData[row]);
+						TabTalk.read.push(tabTalkData[row].timestamp + "/" + tabTalkData[row].from);
+						TabTalk.callback(tabTalkData[row]);
 					}
 				}
 				
-				this.ourLength = tabTalkData.length
+				TabTalk.ourLength = tabTalkData.length
 			}
-		}, this.options.updateInterval);
+		}, TabTalk.options.updateInterval);
 	};
 	
 	// A nicer way to set a callback function
 	TabTalk.setCallback = function(func) {
-		this.callback = func;
+		TabTalk.callback = func;
 	};
 	
 	TabTalk.talk = function(data) {
@@ -71,7 +71,7 @@
 		// a timestamp, this tab id, and a message
 		var message = {
 			timestamp: (new Date()).getTime(),
-			from: this.id,
+			from: TabTalk.id,
 			message: data
 		};
 		// Fetch existing data, decode it from JSON
