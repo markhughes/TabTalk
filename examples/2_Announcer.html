@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Test</title>
+		
+		<script src="../TabTalk.js"></script>
+	</head>
+	
+	<body>
+		<p>
+			Please note: All examples will send data to each other as they'll be on the same domain. Consider only having one example open at a time!
+		</p>
+		<script type="text/javascript">
+			// You don't have to send data if you just want to announce to other tabs that
+			// another tab has been opened. 
+			Talk();
+			
+			TabTalk.setCallback(function(data) {
+				document.getElementById("messageArea").innerHTML+= "<br>New tab opened from " + data.from;
+			});
+		</script>
+		
+		<pre id="messageArea">Messages will show here when a new tab is opened:<br></pre>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title>Test</title>
+		
+		<script src="../TabTalk.js"></script>
+	</head>
+	
+	<body>
+		<p>
+			Please note: All examples will send data to each other as they'll be on the same domain. Consider only having one example open at a time!
+		</p>
+		<script type="text/javascript">
+			// This is our callback function
+			TabTalk.setCallback(function(data) {
+				showPerson(data.message);
+			});
+			
+			// As we store all 'messages' in a JSON format, we can pass on objects too
+			function sendObject(person) {
+				var PersonObj = {};
+				
+				if(person == "Person 1") {
+					PersonObj.name = "Mark";
+					PersonObj.age = 21;
+					PersonObj.country = "Australia";
+				}
+				
+				if(person == "Person 2") {
+					PersonObj.name = "Jess";
+					PersonObj.age = 23;
+					PersonObj.country = "America";
+				}
+				
+				if(person == "Person 3") {
+					PersonObj.name = "Sam";
+					PersonObj.age = 20;
+					PersonObj.country = "New Zealand";
+				}
+				
+				Talk(PersonObj);
+								
+			}
+			
+			// this function simply displays the information from the object 
+			function showPerson(person) {
+				var element = document.getElementById("person");
+				
+				element.innerHTML += "<b>Name: " + person.name + "<br>";
+				element.innerHTML += "<b>Country: " + person.country + "<br>";
+				element.innerHTML += "<b>Age: " + person.age + "<br><br>";
+				
+			}
+
+		</script>
+		
+		<p>
+			<input value="Person 1" type="button" onclick="sendObject('Person 1')"> 
+			<input value="Person 2" type="button" onclick="sendObject('Person 2')"> 
+			<input value="Person 3" type="button" onclick="sendObject('Person 3')"> 
+		</p>
+		
+		<div id="person" style="font-family: Helvetica, Arial"></div>
+	</body>
+</html>

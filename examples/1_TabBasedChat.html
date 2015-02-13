@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>Test</title>
+		
+		<script src="../TabTalk.js"></script>
+	</head>
+	
+	<body>
+		<p>
+			Please note: All examples will send data to each other as they'll be on the same domain. Consider only having one example open at a time!
+		</p>
+		<script type="text/javascript">
+			// This is our callback function
+			TabTalk.setCallback(function(data) {
+				console.log(data)
+				document.getElementById("messageArea").innerHTML+= "<b>(" + data.from + ") said: " + data.message + "<br>";
+			});
+			
+			// Cosmetic Stuff
+			function submitTextarea(e, textarea){
+				var code = (e.keyCode ? e.keyCode : e.which);
+				if(code == 13) {
+					if(!e.shiftKey) {
+						
+						// This will talk to the other tabs 
+						Talk(textarea.value);
+						
+						console.log(e);
+						setTimeout(function() {
+							textarea.value = '';
+						}, 1)
+						
+						document.getElementById("messageArea").innerHTML+= "<b>your said: " + textarea.value + "<br>";
+
+					}
+				}
+			}
+
+		</script>
+		
+		
+		<textarea id="msg" name="msg" onkeypress="submitTextarea(event, this)"></textarea>
+		
+		<pre id="messageArea"></pre>
+	</body>
+</html>
