@@ -2,7 +2,7 @@
  * TabTalk v1.0.0
  * https://github.com/MarkehMe/TabTalk
  *
- * Copyright (c) 2015 Mark Hughes
+ * Copyright (c) 2015 Mark Hughes <mark@markeh.me>
  * Released under the MIT license
  *
  */
