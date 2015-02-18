@@ -37,17 +37,25 @@
 					PersonObj.country = "New Zealand";
 				}
 				
+				PersonObj.test = function () {
+					console.log("hey console, did you know " + this.name + " is from " + this.country);
+				}
+				
 				Talk(PersonObj);
 								
 			}
 			
 			// this function simply displays the information from the object 
 			function showPerson(person) {
+				console.log(person);
+				
 				var element = document.getElementById("person");
 				
 				element.innerHTML += "<b>Name: " + person.name + "<br>";
 				element.innerHTML += "<b>Country: " + person.country + "<br>";
 				element.innerHTML += "<b>Age: " + person.age + "<br><br>";
+				
+				//person.test();
 				
 			}
 
