@@ -1,0 +1,22 @@
+{
+  "name": "TabTalk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "TabTalk.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://MarkehMe@github.com/MarkehMe/TabTalk.git"
+  },
+  "author": {
+    "name": "Mark Hughes",
+    "email": "mark@markeh.me"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarkehMe/TabTalk/issues"
+  },
+  "homepage": "https://github.com/MarkehMe/TabTalk",
+}
